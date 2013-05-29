@@ -1,0 +1,9 @@
+comment("Perform a Google search on something
+like \"baby boots\".
+The Ads that appear in the yellow box
+is what will be scraped (the link).")
+set(#var, $scrape attribute(<id="tads">, "innerhtml"), "Global")
+set(#var, $replace(#var, "</cite>", "</cite>
+"), "Global")
+set(#var, $find regular expression(#var, "(<cite>.\{1,\}cite>)"), "Global")
+set(#var, $replace($replace($replace(#var, "</", "<"), "<cite>", $nothing), "<b>", $nothing), "Global")
